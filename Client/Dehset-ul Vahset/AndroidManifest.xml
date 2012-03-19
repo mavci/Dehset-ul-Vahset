@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.avci.dehsetulvahset"
+    android:versionCode="11"
+    android:versionName="Alpha 2.1" >
+
+    <uses-sdk android:minSdkVersion="7" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name">
+        <activity
+            android:label="@string/app_name"
+            android:name=".main"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:label="@string/app_name"
+            android:name=".Game"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>"
+    </application>
+
+</manifest>
