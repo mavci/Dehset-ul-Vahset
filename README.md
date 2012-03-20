@@ -32,8 +32,6 @@ Oyuncunun henüz bir çantası yok ve parasıyla bir şeyler alamıyor. Parayla 
 
 Ve sonrasında yeni canavarlar, yeni haritalar, yeni karakterler ve yeni eşyalar olacak.
 
-Bunların dışında teknik ve genel olarak güvenlik açıkları ve performans üzerine çalışmalar yapılması gerekiyor.
-
 Nasıl kuruluyor?
 ----------------
 
@@ -56,4 +54,13 @@ Harita dosyasında her bir piksel 32*32 lik bir alanı ifade eder. Her pikseldek
 1. HOSTAGE
 2. HOLE
 
-Yani eğer bir pikselin yeşil değeri 4 ise, o konumda zombi çıkar. Mavi ve şeffaflık değeri için henüz bir şey kullanılmıyor. Daha fazle detay için varolan map dosyasını inceleyebilirsiniz.
+Yani eğer bir pikselin yeşil değeri 4 ise, o konumda zombi çıkar. Mavi ve şeffaflık değeri için henüz bir şey kullanılmıyor. Daha fazla detay için varolan map dosyasını inceleyebilirsiniz.
+
+Katkıda bulunanlar
+-----------------
+
+* [Nafiz Bayındır](https://plus.google.com/100308079170125517935)
+* [Hakan Beşikci](https://plus.google.com/101848702003512371219)
+* [Orhan Gazi Başlı](https://plus.google.com/110938306897085784091)
+
+Sprite kaynak [AngbandTk](http://pousse.rapiere.free.fr/tome/tiles/AngbandTk/tome-angbandtktiles.htm)
