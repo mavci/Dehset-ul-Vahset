@@ -60,7 +60,7 @@ public class DVServer {
 		udp.setListener(new UDPListener());
 		out("UDP Server Started (Port: " + udpPort + ")");
 		
-		int[][][] map = readMapFile("src/maps/map2.gif");
+		int[][][] map = readMapFile("src/maps/map1.gif");
 		gameLimit.setLocation(map.length, map[0].length);
 		for(int x = 0; x<gameLimit.x; x++) {
 			for(int y = 0; y<gameLimit.y; y++) {

@@ -32,6 +32,8 @@ Oyuncunun henüz bir çantası yok ve parasıyla bir şeyler alamıyor. Parayla 
 
 Ve sonrasında yeni canavarlar, yeni haritalar, yeni karakterler ve yeni eşyalar olacak.
 
+Bunların dışında teknik ve genel olarak güvenlik açıkları ve performans üzerine çalışmalar yapılması gerekiyor.
+
 Nasıl kuruluyor?
 ----------------
 
