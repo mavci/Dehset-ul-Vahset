@@ -416,26 +416,17 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 		paint.setColor(Color.BLACK);
 		paint.setAlpha(180);
 		c.drawText(my_data.get("money") + " $", d2p(11), d2p(65), paint);
+		c.drawText(my_data.get("exp") + " xp", d2p(11), d2p(45), paint);
+		
 		paint.setColor(Color.WHITE);
 		paint.setAlpha(180);
 		c.drawText(my_data.get("money") + " $", d2p(10), d2p(66), paint);
-
-		paint.setTextSize(d2p(16));
-		paint.setColor(Color.BLACK);
-		paint.setAlpha(180);
-		c.drawText(my_data.get("exp") + " xp", d2p(11), d2p(45), paint);
-		paint.setColor(Color.WHITE);
-		paint.setAlpha(180);
 		c.drawText(my_data.get("exp") + " xp", d2p(10), d2p(46), paint);
 
 		paint.setTextSize(d2p(10));
-		paint.setColor(Color.WHITE);
-		paint.setAlpha(180);
 		float ver_lenght = paint.measureText(main.app_ver);
 		c.drawText(main.app_ver, Game.width - ver_lenght - d2p(3), d2p(35), paint);
-
-		paint.setColor(Color.WHITE);
-		paint.setAlpha(180);
+		
 		c.drawRect(d2p(10), d2p(10), d2p(160), d2p(26), paint);
 
 		float max_health = Integer.parseInt(my_data.get("maxHealth"));
@@ -447,8 +438,7 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 		paint.setAlpha(180);
 		if (health != 0)
 			c.drawRect(d2p(13), d2p(13), health_bar_width + d2p(13), d2p(23), paint);
-
-		paint.setTextSize(d2p(10));
+		
 		paint.setColor(Color.WHITE);
 		paint.setAlpha(180);
 		String health_text = (int) health + "/" + (int) max_health;
@@ -465,7 +455,7 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 		paint.setColor(Color.RED);
 		paint.setAlpha(100);
 		c.drawCircle(attackButton.x, attackButton.y, attackButtonR, paint);
-		String attack_text = "Sald�r!";
+		String attack_text = "Saldır!";
 		paint.setTextSize(d2p(18));
 		paint.setShadowLayer(2, 0, 0, Color.BLACK);
 		paint.setFakeBoldText(true);
@@ -572,6 +562,8 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 	}
 	
 	public void drawMap(String[] map) {
+		walls.removeAll(walls);
+		
 		float bgTileWidth = d2p(32);
 		float bgTileHeight = d2p(32);
 		float left = -bgTileWidth, top = -bgTileHeight;
@@ -709,10 +701,6 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 				int x = Integer.parseInt(datas[1]);
 				int y = Integer.parseInt(datas[2]);
 				gameLimit.set(x*32, y*32);
-			} else if (datas[0].equals("wall")) {
-				int x = Integer.parseInt(datas[1]);
-				int y = Integer.parseInt(datas[2]);
-				addWall(x, y);
 			} else if (datas[0].equals("map")) {
 				drawMap(datas);
 			} else if (data.equals("userListComplete")) {

@@ -134,27 +134,26 @@ public class DVServer {
 						Iterator<User> itr = col.iterator();
 						while (itr.hasNext()) {
 							User u = itr.next();
-							if (u.data == null)
+							if (u.data == null || u.x > 32 || u.y > 32)
 								continue;
 
-							if (u.x <= 32 && u.y <= 32) {
-								int health = u.data.getInt("health");
-								int maxHealth = u.data.getInt("maxHealth");
+							int health = u.data.getInt("health");
+							int maxHealth = u.data.getInt("maxHealth");
+							
+							if (health == maxHealth)
+								continue;
+							
+							health += 10;
+							
+							if (health > maxHealth)
+								health = maxHealth;
 
-								if (health == maxHealth)
-									continue;
-								health += 10;
-
-								if (health > maxHealth)
-									health = maxHealth;
-
-								if (u.data.getInt("health") != health) {
-									u.data.put("x", u.x);
-									u.data.put("y", u.y);
-									u.data.put("health", health);
-									u.tcp.send("me|" + u.data.toString());
-									tcp.echo("user|" + u.data.toString(), u.tcp);
-								}
+							if (u.data.getInt("health") != health) {
+								u.data.put("x", u.x);
+								u.data.put("y", u.y);
+								u.data.put("health", health);
+								u.tcp.send("me|" + u.data.toString());
+								tcp.echo("user|" + u.data.toString(), u.tcp);
 							}
 						}
 					}
