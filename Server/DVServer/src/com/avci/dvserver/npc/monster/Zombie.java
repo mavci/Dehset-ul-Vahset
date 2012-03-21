@@ -52,11 +52,6 @@ public class Zombie extends Monster {
 		x += r.nextInt(7) - 3;
 		y += r.nextInt(7) - 3;
 		
-		if(x < 0) x = 0;
-		if(y < 0) y = 0;
-		if(x > DVServer.gameLimit.x * 32) x = DVServer.gameLimit.x * 32;
-		if(y > DVServer.gameLimit.y * 32) y = DVServer.gameLimit.y * 32;
-		
 		updateCoordinate();
 	}
 }

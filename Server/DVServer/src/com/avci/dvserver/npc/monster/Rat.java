@@ -51,11 +51,6 @@ public class Rat extends Monster {
 			targetY = y;
 		}
 		
-		if(x < 0) x = 0;
-		if(y < 0) y = 0;
-		if(x > DVServer.gameLimit.x * 32) x = DVServer.gameLimit.x * 32;
-		if(y > DVServer.gameLimit.y * 32) y = DVServer.gameLimit.y * 32;
-		
 		if(targetTimer++ == targetSpeed) {
 			int tx = Math.round((r.nextInt(300) - 150 + x) / 5) * 5;
 			int ty = Math.round((r.nextInt(300) - 150 + y) / 5) * 5;

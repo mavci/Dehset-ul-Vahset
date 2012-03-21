@@ -44,14 +44,6 @@ public class SpeedyRat extends Monster {
 			if(target.x > x) x+=10;
 			if(target.y > y) y+=10;
 		}
-
-		x += r.nextInt(11) - 5;
-		y += r.nextInt(11) - 5;
-		
-		if(x < 0) x = 0;
-		if(y < 0) y = 0;
-		if(x > DVServer.gameLimit.x * 32) x = DVServer.gameLimit.x * 32;
-		if(y > DVServer.gameLimit.y * 32) y = DVServer.gameLimit.y * 32;
 		
 		updateCoordinate();
 	}

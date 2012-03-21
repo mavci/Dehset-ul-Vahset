@@ -161,6 +161,12 @@ public class NPC {
 
 	public void updateCoordinate() {
 		wallCollise();
+		
+		if(x < 0) x = 0;
+		if(y < 0) y = 0;
+		if(x > (DVServer.gameLimit.x - 1) * 32) x = (DVServer.gameLimit.x - 1) * 32;
+		if(y > (DVServer.gameLimit.y - 1) * 32) y = (DVServer.gameLimit.y - 1) * 32;
+		
 		data.put("y", y);
 		data.put("x", x);
 		DVServer.udp.echo("npc_move|" + id + "|" + x + "|" + y, null);		

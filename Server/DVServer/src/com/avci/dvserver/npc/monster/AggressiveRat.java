@@ -46,11 +46,6 @@ public class AggressiveRat extends Monster {
 			if(target.y > y) y+=5;
 		}
 		
-		if(x < 0) x = 0;
-		if(y < 0) y = 0;
-		if(x > DVServer.gameLimit.x * 32) x = DVServer.gameLimit.x * 32;
-		if(y > DVServer.gameLimit.y * 32) y = DVServer.gameLimit.y * 32;
-		
 		updateCoordinate();
 	}
 }
