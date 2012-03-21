@@ -89,13 +89,11 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 	boolean ready = false;
 	private int damageTimer;
 
-	private static final int INVALID_POINTER_ID = -1;
 	Point joystick = new Point();
 	Point attackButton = new Point();
 	private float joystickR;
 	private float attackButtonR;
 	private int dx, dy;
-	public int mActivePointerId = INVALID_POINTER_ID;
 	private int joyPointerIndex = -1;
 	private float cameraMoveLimit;
 	private float cameraMoveSpeed;
@@ -214,7 +212,6 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 
 		case MotionEvent.ACTION_UP:
 		case MotionEvent.ACTION_CANCEL: {
-			mActivePointerId = INVALID_POINTER_ID;
 			joyPointerIndex = -1;
 			dx = dy = 0;
 			break;
@@ -222,43 +219,6 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 		}
 
 		return true;
-		/*
-		 * Point touch = new Point((int) ((event.getX() - d2p(cameraPosition.x))
-		 * / (Game.dpi / 160)), (int) ((event.getY() - d2p(cameraPosition.y)) /
-		 * (Game.dpi / 160)));
-		 * 
-		 * switch (event.getAction()) { case MotionEvent.ACTION_DOWN: if
-		 * (freezeTimer > 0) return true;
-		 * 
-		 * int minDistance = -1; int distance = -1; int nearNpcId = 0;
-		 * 
-		 * synchronized (npcs) { for (Entry<Integer, NPC> entry :
-		 * npcs.entrySet()) { int npcID = entry.getKey(); NPC npc =
-		 * entry.getValue();
-		 * 
-		 * distance = (int) Math.sqrt(Math.pow(npc.x - touch.x, 2) +
-		 * Math.pow(npc.y - touch.y, 2)); if (distance <= 32 && (minDistance >
-		 * distance || minDistance == -1)) { minDistance = distance; nearNpcId =
-		 * npcID; } } }
-		 * 
-		 * if (nearNpcId != 0) { if(targetNPCID == nearNpcId) { attackTarget =
-		 * true; target.set(Math.round(touch.x / 32) * 32, Math.round(touch.y /
-		 * 32) * 32); } else { targetNPCID = nearNpcId; } return true; } else {
-		 * targetNPCID = 0; attackTarget = false; }
-		 * 
-		 * target.set(Math.round(touch.x / 32) * 32, Math.round(touch.y / 32) *
-		 * 32); if (target.x > gameLimit.x - 32) target.x = gameLimit.x - 32; if
-		 * (target.y > gameLimit.y - 32) target.y = gameLimit.y - 32; if
-		 * (target.x < 0) target.x = 0; if (target.y < 0) target.y = 0;
-		 * 
-		 * if (!selectedNPCID.equals("0")) { tcp.send("spawn_npc|" +
-		 * selectedNPCID + "|" + target.x + "|" + target.y); target.set(me.x,
-		 * me.y); return true; }
-		 * 
-		 * if (target.equals(me)) { attack(target.x, target.y); } break; }
-		 * 
-		 * return true;
-		 */
 	}
 
 	private void attack(int x, int y) {
@@ -337,7 +297,7 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 				}
 			}
 
-			if (last.x != me.x || last.y != me.y)
+			if (!last.equals(me.x, me.y))
 				udp.send("move|" + me.x + "|" + me.y);
 
 			if (-d2p(cameraPosition.x) < d2p(gameLimit.x) - cameraLimit.x + d2p(64) && d2p(me.x) > cameraLimit.x - d2p(cameraPosition.x) - cameraMoveLimit) {
@@ -505,7 +465,7 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 		paint.setColor(Color.RED);
 		paint.setAlpha(100);
 		c.drawCircle(attackButton.x, attackButton.y, attackButtonR, paint);
-		String attack_text = "Saldýr!";
+		String attack_text = "Saldï¿½r!";
 		paint.setTextSize(d2p(18));
 		paint.setShadowLayer(2, 0, 0, Color.BLACK);
 		paint.setFakeBoldText(true);
@@ -813,7 +773,7 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 
 		@Override
 		public void disconnected() {
-			main.instance.makeToast("Sunucu ile baðlantý kesildi.");
+			main.instance.makeToast("Sunucu ile baÄŸlantÄ± kesildi.");
 			Game.instance.finish();
 			main.instance.finish();
 		}
@@ -892,8 +852,8 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 			if (selectedNPCID.equals("0")) {
 				menu.add(0, 0, 0, "NPC Ekle");
 			} else {
-				menu.add(0, 0, 0, "NPC ID Deðiþtir");
-				menu.add(0, 1, 0, "NPC Eklemeden Çýk");
+				menu.add(0, 0, 0, "NPC ID DeÄŸitir");
+				menu.add(0, 1, 0, "NPC Eklemeden Ã‡Ä±k");
 			}
 		}
 	}
@@ -918,8 +878,8 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 				input.setInputType(InputType.TYPE_CLASS_NUMBER);
 				alert.setCancelable(false);
 				alert.setView(input);
-				alert.setTitle("Lütfen NPC ID girin");
-				alert.setMessage("Oyuna gönderilecek NPC ID'sini girin");
+				alert.setTitle("LÃ¼tfen NPC ID girin");
+				alert.setMessage("Oyuna gÃ¶nderilecek NPC ID'sini girin");
 				alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -931,7 +891,7 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 						selectedNPCID = inputName;
 					}
 				});
-				alert.setNegativeButton("Ýptal", new DialogInterface.OnClickListener() {
+				alert.setNegativeButton("Ä°ptal", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						selectedNPCID = "0";

@@ -61,7 +61,7 @@ public class main extends Activity {
 		TextView app_verView = (TextView) findViewById(R.id.app_ver);
 		app_verView.setText(app_ver);
 		
-		// Telefonun ID tespit kýsmý
+		// Telefonun ID tespit kÄ±smÄ±
 		final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
 		final String tmDevice, tmSerial, androidId;
 		tmDevice = "" + tm.getDeviceId();
@@ -101,7 +101,7 @@ public class main extends Activity {
 		});
 		
 		
-		loadingDialog = ProgressDialog.show(main.this, "", "Sunucuya baðlanýlýyor ...", true);
+		loadingDialog = ProgressDialog.show(main.this, "", "Sunucuya baÄŸlanÄ±yor ...", true);
 		loadingDialog.show();
 
 		tcp = new TCPSocket(ServerIP, tcpPort);
@@ -124,8 +124,8 @@ public class main extends Activity {
 				input.setFilters(FilterArray);
 				alert.setCancelable(false);
 				alert.setView(input);
-				alert.setTitle("Lütfen isminizi girin");
-				alert.setMessage("Oyundaki karakteriniz için bir isim girin:");
+				alert.setTitle("LÃ¼tfen isminizi girin");
+				alert.setMessage("Oyundaki karakteriniz iÃ§in bir isim girin:");
 				alert.setPositiveButton("Tamam", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -160,13 +160,13 @@ public class main extends Activity {
 					@Override
 					public void run() {
 						playButton.setEnabled(true);
-						statusView.setText("Oyuna hoþgeldin " + name + "! (" + online + " online)");
+						statusView.setText("Oyuna hoÅŸgeldin " + name + "! (" + online + " online)");
 					}
 				});
 			} else if (datas[0].equals("name")) {
 				askName();
 			} else if (datas[0].equals("name_exists")) {
-				makeToast("Bu isim baþkasý tarafýndan alýnmýþ, lütfen baþka bir isim deneyin.");
+				makeToast("Bu isim baÅŸkasÄ± tarafÄ±ndan alÄ±nmÄ±ÅŸ, lÃ¼tfen baÅŸka bir isim deneyin.");
 				askName();
 			}
 		}
@@ -187,7 +187,7 @@ public class main extends Activity {
 
 		@Override
 		public void disconnected() {
-			makeToast("Sunucu ile baðlantý kesildi.");
+			makeToast("Sunucu ile baÄŸlantÄ± kesildi.");
 			finish();
 		}
 	}
@@ -201,7 +201,7 @@ public class main extends Activity {
 				status = 11;
 				startActivity(new Intent(main.this, Game.class));
 			} else if(data.equals("error") || data.equals("no")){
-				makeToast("Oyun sunucuna baðlanýrken bir sorun yaþandý. Lütfen tekar deneyin.");
+				makeToast("Oyun sunucuna baÄŸlanÄ±rken bir sorun yaÅŸandÄ±. LÃ¼tfen tekar deneyin.");
 				finish();
 			}
 		}

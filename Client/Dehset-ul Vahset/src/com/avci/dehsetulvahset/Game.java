@@ -23,13 +23,12 @@ public class Game extends Activity {
 	static int width;
 	static int height;
 
-	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Game.instance = this;
         
-		loadingDialog = ProgressDialog.show(Game.this, "", "Oyun açýlýyor ...", true);
+		loadingDialog = ProgressDialog.show(Game.this, "", "Oyun aÃ§Ä±lÄ±yor ...", true);
 		loadingDialog.show();
         
         initGame();
