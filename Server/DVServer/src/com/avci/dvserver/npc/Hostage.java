@@ -15,7 +15,7 @@ public class Hostage extends NPC {
 		power = 0;
 		money = 10;
 		exp = 10;
-		margin.setLocation(r.nextInt(25) + 25, r.nextInt(25) + 25);
+		margin.setLocation(r.nextInt(60) - 30, r.nextInt(60) - 30);
 		
 		data.put("charX", "0");
 		data.put("charY", "7");
@@ -28,7 +28,8 @@ public class Hostage extends NPC {
 		
 		if(new_position.x <= 32 && new_position.y <= 32) {
 			synchronized (DVServer.users) {
-				DVServer.sendReward(DVServer.users.get(followingUserId), money, exp);
+				if(DVServer.users.get(followingUserId) != null)
+					DVServer.sendReward(DVServer.users.get(followingUserId), money, exp);
 			}
 			live = false;
 		} else if(new_position.x <= 64 && new_position.y <= 64) {
@@ -69,6 +70,7 @@ public class Hostage extends NPC {
 			followingUserId = 0;
 		} else {
 			followingUserId = u.id;
+			margin.setLocation(r.nextInt(60) - 30, r.nextInt(60) - 30);
 		}
 	}
 }
