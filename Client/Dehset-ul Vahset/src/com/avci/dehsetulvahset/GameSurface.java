@@ -776,14 +776,26 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 
 			if (datas[0].equals("move") && datas.length == 4) {
 				int id = Integer.parseInt(datas[1]);
+				int x = Integer.parseInt(datas[2]);
+				int y = Integer.parseInt(datas[3]);
+				
+				if(id == my_id) {
+					me.set(x, y);
+					return;
+				}
+				
 				if (users.get(id) == null) {
 					tcp.send("user_info|" + id);
 					return;
 				}
-
-				User u = users.get(id);
-				u.x = Integer.parseInt(datas[2]);
-				u.y = Integer.parseInt(datas[3]);
+				
+				if(id == my_id) {
+					me.set(x, y);
+				} else {
+					User u = users.get(id);
+					u.x = x;
+					u.y = y;
+				}
 			} else if (datas[0].equals("npc_move") && datas.length == 4) {
 				int id = Integer.parseInt(datas[1]);
 				if (npcs.get(id) == null) {
