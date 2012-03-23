@@ -175,7 +175,11 @@ class GameSurface extends SurfaceView implements Runnable, SurfaceHolder.Callbac
 			final float y = ev.getY(i);
 			
 			if (!selectedNPCID.equals("0")) {
-				tcp.send("spawn_npc|" + selectedNPCID + "|" + (int) ((x - d2p(cameraPosition.x)) / (Game.dpi / 160)) + "|" + (int) ((y - d2p(cameraPosition.y)) / (Game.dpi / 160)));
+				Point npcPosition = new Point((int) ((x - d2p(cameraPosition.x)) / (Game.dpi / 160)), (int) ((y - d2p(cameraPosition.y)) / (Game.dpi / 160)));
+				if(npcPosition.x < 0 || npcPosition.y < 0 || npcPosition.x > gameLimit.x || npcPosition.y > gameLimit.y)
+					return true;
+				
+				tcp.send("spawn_npc|" + selectedNPCID + "|" + npcPosition.x + "|" + npcPosition.y);
 			}
 			
 			int joyDistance = (int) Math.sqrt(Math.pow(joystick.x - x, 2) + Math.pow(joystick.y - y, 2));
